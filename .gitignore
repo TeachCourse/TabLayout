@@ -1,0 +1,8 @@
+## 忽略当前目录下的文件夹
+build/
+/src/androidTest
+/src/test
+
+## 忽略指定的文件
+*.apk
+*.iml
