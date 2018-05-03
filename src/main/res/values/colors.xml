@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--<color name="background_tab_focused">#FF0033</color>-->
     <color name="background_tab_pressed">#6ed96c</color>
-    <!--<color name="background_tab_selected">#CCFFFF</color>-->
-    <!--<color name="gradient_indicator_x_start">#FF6666</color>-->
-    <!--<color name="gradient_indicator_x_end">#002088c2</color>-->
 
 </resources>
