@@ -81,7 +81,6 @@ public class TabLayout extends HorizontalScrollView {
 
     private boolean shouldExpand = false;
     private boolean textAllCaps = true;
-    private boolean obtainTextWidth = false;
 
     private int scrollOffset = 52;
     private int indicatorHeight = 4;
@@ -163,21 +162,29 @@ public class TabLayout extends HorizontalScrollView {
                 TypedValue.COMPLEX_UNIT_DIP, dividerWidth, dm);
         textSize = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP, textSize, dm);
+        initSystemAttr(context, attrs);
 
+        initCustomAttr(context, attrs);
+
+    }
+
+    private void initSystemAttr(Context context, AttributeSet attrs) {
         // get system attrs (android:textSize and android:textColor)
 
         TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
-        //获取配置文件属性值
+        //获取系统属性android:textColor/android:textSize文件属性值
         textSize = a.getDimensionPixelSize(0, textSize);
         textColor = a.getColor(1, textColor);
 
         a.recycle();
+    }
 
-        // get custom attrs
+    private void initCustomAttr(Context context, AttributeSet attrs) {
+        TypedArray a;// get custom attrs
 
         a = context.obtainStyledAttributes(attrs,
                 R.styleable.TabLayout);
-        //获取配置文件属性值
+        //获取自定义属性配置文件字段
         indicatorColor = a.getColor(
                 R.styleable.TabLayout_tab_indicator_color,
                 indicatorColor);
@@ -493,10 +500,6 @@ public class TabLayout extends HorizontalScrollView {
 
     }
 
-    public void setShouldExpand(boolean shouldExpand) {
-        this.shouldExpand = shouldExpand;
-        notifyDataSetChanged();
-    }
 
     @Override
     public void onRestoreInstanceState(Parcelable state) {
@@ -553,18 +556,18 @@ public class TabLayout extends HorizontalScrollView {
 
         private boolean shouldExpand = false;
         private boolean textAllCaps = true;
-        private boolean obtain = false;
 
         private int scrollOffset = 52;
-        private int indicatorHeight = 8;
+        private int indicatorHeight = 4;
+        private int indicatorWidth = -1;
         private int underlineHeight = 2;
         private int dividerPadding = 12;
         private int tabPadding = 24;
         private int dividerWidth = 1;
 
-        private int tabTextSize = 12;
-        private int tabTextColor = 0xFF666666;
-        private int selectedTabTextColor = 0xFF666666;
+        private int textSize = 12;
+        private int textColor = 0xFF666666;
+        private int textColorSelected = 0xFF666666;
         private int tabBackgroundResId = R.drawable.background_tab;
 
         public Builder(Context context) {
@@ -596,10 +599,6 @@ public class TabLayout extends HorizontalScrollView {
             return this;
         }
 
-        public Builder setObtainTextWidth(boolean obtain) {
-            this.obtain = obtain;
-            return this;
-        }
 
         public Builder setScrollOffset(int scrollOffset) {
             this.scrollOffset = scrollOffset;
@@ -631,18 +630,18 @@ public class TabLayout extends HorizontalScrollView {
             return this;
         }
 
-        public Builder setTabTextSize(int tabTextSize) {
-            this.tabTextSize = tabTextSize;
+        public Builder setTextSize(int textSize) {
+            this.textSize = textSize;
             return this;
         }
 
-        public Builder setTabTextColor(int tabTextColor) {
-            this.tabTextColor = tabTextColor;
+        public Builder setTextColor(int textColor) {
+            this.textColor = textColor;
             return this;
         }
 
-        public Builder setSelectedTabTextColor(int selectedTabTextColor) {
-            this.selectedTabTextColor = selectedTabTextColor;
+        public Builder setTextColorSelected(int textColorSelected) {
+            this.textColorSelected = textColorSelected;
             return this;
         }
 
@@ -651,28 +650,33 @@ public class TabLayout extends HorizontalScrollView {
             return this;
         }
 
+        public Builder setIndicatorWidth(int width){
+            this.indicatorWidth=width;
+            return this;
+        }
+
         public TabLayout create() {
-            TabLayout navigation = new TabLayout(context);
-            navigation.indicatorColor = indicatorColor;
-            navigation.underlineColor = underlineColor;
-            navigation.dividerColor = dividerColor;
+            TabLayout layout = new TabLayout(context);
+            layout.indicatorColor = indicatorColor;
+            layout.underlineColor = underlineColor;
+            layout.dividerColor = dividerColor;
 
-            navigation.shouldExpand = shouldExpand;
-            navigation.textAllCaps = textAllCaps;
-            navigation.obtainTextWidth = false;
+            layout.shouldExpand = shouldExpand;
+            layout.textAllCaps = textAllCaps;
 
-            navigation.scrollOffset = scrollOffset;
-            navigation.indicatorHeight = indicatorHeight;
-            navigation.underlineHeight = underlineHeight;
-            navigation.dividerPadding = dividerPadding;
-            navigation.tabPadding = tabPadding;
-            navigation.dividerWidth = dividerWidth;
+            layout.scrollOffset = scrollOffset;
+            layout.indicatorHeight = indicatorHeight;
+            layout.indicatorWidth=indicatorWidth;
+            layout.underlineHeight = underlineHeight;
+            layout.dividerPadding = dividerPadding;
+            layout.tabPadding = tabPadding;
+            layout.dividerWidth = dividerWidth;
 
-            navigation.textSize = tabTextSize;
-            navigation.textColor = tabTextColor;
-            navigation.textColorSelected = selectedTabTextColor;
-            navigation.tabBackgroundResId = tabBackgroundResId;
-            return navigation;
+            layout.textSize = textSize;
+            layout.textColor = textColor;
+            layout.textColorSelected = textColorSelected;
+            layout.tabBackgroundResId = tabBackgroundResId;
+            return layout;
         }
     }
 }
