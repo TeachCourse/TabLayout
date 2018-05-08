@@ -36,4 +36,4 @@ TabLayout tabLayout=new TabLayout.Builder(getContext())
 
 运行效果图：
 
-<img src="img/20180508144623.jpg" width="800" />
+<img src="img/20180508144623.jpg" width="480" />
