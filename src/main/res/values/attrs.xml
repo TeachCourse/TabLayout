@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="TabNavigation">
+    <declare-styleable name="TabLayout">
         <attr name="tab_indicator_color" format="color" />
         <attr name="tab_underline_color" format="color" />
         <attr name="tab_divider_color" format="color" />
+        <attr name="tab_text_color_selected" format="color" />
+        <attr name="tab_text_color" format="color" />
+        <attr name="tab_text_size" format="dimension" />
         <attr name="tab_indicator_height" format="dimension" />
+        <attr name="tab_indicator_width" format="dimension" />
         <attr name="tab_underline_height" format="dimension" />
         <attr name="tab_divider_padding" format="dimension" />
         <attr name="tab_padding_left_to_right" format="dimension" />
